@@ -58,6 +58,9 @@ import { CheckoutComponent } from './selected-customer/checkout/checkout.compone
 import { ReviewItemsComponent } from './selected-customer/checkout/review-items/review-items.component';
 import { PaymentComponent } from './selected-customer/checkout/payment/payment.component';
 import { PaymentService } from './services/payment.service';
+import { DeleteSavedForLaterOrderService } from './services/delete-saved-for-later-order.service';
+import { DetailedCashDrawerComponent } from './detailed-cash-drawer/detailed-cash-drawer.component';
+import { GetCashOrdersService } from './services/get-cash-orders.service'
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -76,7 +79,8 @@ const appRoutes: Routes = [
   {path: 'employees/:employeeId/customers/:customerId/edit', canActivate: [AuthGuradService], component: EditCustomerComponent},
   {path: 'employees/:employeeId/customers/:customerId/cart', canActivate: [AuthGuradService], component: CartComponent},
   {path: 'employees/:employeeId/profile/update', canActivate: [AuthGuradService], component: UpdateProfileComponent},
-  {path: 'employees/:employeeId/customers/:customerId/checkout', canActivate: [AuthGuradService], component: CheckoutComponent}
+  {path: 'employees/:employeeId/customers/:customerId/checkout', canActivate: [AuthGuradService], component: CheckoutComponent},
+  {path: 'employees/:employeeId/cash-drawer', canActivate: [AuthGuradService], component: DetailedCashDrawerComponent}
 ]
 @NgModule({
   declarations: [
@@ -109,7 +113,8 @@ const appRoutes: Routes = [
     UpdateProfileComponent,
     CheckoutComponent,
     ReviewItemsComponent,
-    PaymentComponent
+    PaymentComponent,
+    DetailedCashDrawerComponent
   ],
   imports: [
     BrowserModule,
@@ -117,7 +122,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoginService, AuthService, SignUpService, EmployeesLastOrderService, LowStockProductsService, TotalOrdersPlacedTodayService, AddProductService, GetAllProductsService, SearchProductService, UpdateProductService, AddCustomerService, SearchCustomerService, ShowOrdersService, ShowOrderDetailsService, GetSelectedCustomerService, AddToCartService, GetProductsInCartService, GetLoggedInEmployeeService, EmptyCartService, DeleteProductFromCartService, UpdateCustomerService, ProceedToCheckoutService, PaymentService],
+  providers: [LoginService, AuthService, SignUpService, EmployeesLastOrderService, LowStockProductsService, TotalOrdersPlacedTodayService, AddProductService, GetAllProductsService, SearchProductService, UpdateProductService, AddCustomerService, SearchCustomerService, ShowOrdersService, ShowOrderDetailsService, GetSelectedCustomerService, AddToCartService, GetProductsInCartService, GetLoggedInEmployeeService, EmptyCartService, DeleteProductFromCartService, UpdateCustomerService, ProceedToCheckoutService, PaymentService, DeleteSavedForLaterOrderService, GetCashOrdersService],
   
   bootstrap: [AppComponent]
 })

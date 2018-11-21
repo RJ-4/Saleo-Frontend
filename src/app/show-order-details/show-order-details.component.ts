@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShowOrderDetailsService } from '../services/show-order-details.service';
 import { LoginService } from '../services/login.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DeleteSavedForLaterOrderService } from '../services/delete-saved-for-later-order.service';
+import { AddToCartService } from '../services/add-to-cart.service';
 
 @Component({
   selector: 'app-show-order-details',
@@ -19,7 +21,10 @@ export class ShowOrderDetailsComponent implements OnInit {
 
   constructor(private showOrderDetailsService: ShowOrderDetailsService,
               private loginService: LoginService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private deleteSavedForLaterOrderService: DeleteSavedForLaterOrderService,
+              private addToCartService: AddToCartService,
+              private router: Router) { }
 
   ngOnInit() {
     this.employeeId = +window.localStorage.getItem(this.loginService.getLoggedInEmployeeIdKey());
@@ -32,12 +37,25 @@ export class ShowOrderDetailsComponent implements OnInit {
 
     this.showOrderDetailsService.getOrderDetails(this.employeeId, this.orderId)
                                 .subscribe((response) => {
-                                  console.log(response.json());
                                   this.selectedOrder = response.json();  
                                   this.isSelectedOrderLoaded = Promise.resolve(true);
                                 },
                                 (error) => this.isOrderIdInvalid = true
                                 );
+  }
+
+  onClickMoveToCart() {
+    this.addToCartService.addToCart(this.employeeId, 
+                                    this.selectedOrder.customer.customerId,
+                                    this.selectedOrder.product.productCode)
+                         .subscribe();
+
+    this.deleteSavedForLaterOrderService.deleteOrder(this.selectedOrder.orderId)
+                                        .subscribe();
+  }
+
+  onClickModalCloseButton() {
+    this.router.navigate([`/employees/${ this.employeeId }/orders`]);
   }
 
 }

@@ -133,6 +133,35 @@
     </div>
     
   </div>
-  <hr class="background-color-purple">
+  <hr class="background-color-purple mb-5">
+
+  <div class="text-center">
+    <button (click)="onClickMoveToCart()" class="btn btn-lg btn-outline-success" data-toggle="modal" data-target="#showMovedToCartMessage">
+      <i class="fas fa-cart-plus mr-2"></i>
+      Move to Cart
+    </button>
+  </div>
+
 </div>
 <app-footer></app-footer>
+
+<div class="modal" id="showMovedToCartMessage" *ngIf="isSelectedOrderLoaded | async">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-success custom-font-font-weight-bold">
+          Moved to Cart
+        </h3>
+        <button (click)="onClickModalCloseButton()" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body p-4 font-weight-bold custom-font text-dark text-center">
+        This order has been successfully moved to cart!!!
+      </div>
+      <div class="modal-footer">
+        <button (click)="onClickModalCloseButton()" data-dismiss="modal" class="btn btn-success">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
