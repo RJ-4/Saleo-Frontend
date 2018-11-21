@@ -1,0 +1,93 @@
+<div class="my-4 container text-center">
+  <h4 class="text-blue custom-font font-weight-bold">
+    Select Products
+  </h4>
+
+  <div class="form-group mb-4 w-50 ml-auto mr-auto mt-4">
+    <div class="input-group">
+      <input type="text" name="search" id="search" class="form-control" placeholder="Enter product code, product name or product description" #searchBox>
+      <div class="input-group-append">
+          <button type="submit" (click)="onSearch(searchBox)" class="bg-light color-purple" style="border-radius: 5px">
+              <i class="fas fa-search"></i>
+            <span class="pl-2">Search</span>
+            </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isNoProductFound === true" class="pb-4">
+    <div class="alert alert-danger my-2" role="alert">
+      <p class="text-danger font-weight-bold">No product found for this search parameter!!!</p>
+    </div>
+  </div>
+
+  <div *ngIf="isNoProductFound === false && areProductsLoaded | async" class="pb-4">
+
+    <div *ngIf="isProductLoadedToCart | async">
+      <div class="alert alert-success my-2" role="alert" *ngIf="isProductAddedToCart">
+        <p class="custom-font font-weight-bold text-success">{{ productNameAddedToCart }} added to cart!!!</p>
+      </div>
+  
+      <div class="alert alert-danger my-2" role="alert" *ngIf="isUnableToAddProductToCart">
+        <p class="text-danger font-weight-bold">Unable to add {{ productNameAddedToCart }} to cart!!!</p>
+      </div>
+    </div>
+
+    <table class="table table-responsive mt-4 ml-5">
+      <thead class="bg-dark">
+        <tr>
+          <th class="text-light mx-5 px-5">Product</th>
+          <th class="text-light mx-5 px-5">Description</th>
+          <th class="text-light mx-5 px-5">Price</th>
+          <th class="text-light mx-5 px-5">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let selectedProduct of selectedProducts">
+          <td class="mx-5 px-5">
+            <div class="d-flex">
+              <div class="align-self-start pl-4 pr-2">
+                <i class="fas fa-box-open fa-4x"></i>
+              </div>
+              <div class="align-self-start px-2">
+                <a routerLink="/employees/{{ employeeId }}/products/{{ selectedProduct.productCode }}/update" class="color-purple font-weight-bold custom-font">
+                  {{ selectedProduct.productName }}
+                </a>
+                <span class="d-block small color-purple font-weight-light custom-font">
+                  Code: {{ selectedProduct.productCode }}
+                </span>
+                <span class="d-block small color-purple font-weight-light custom-font">
+                  Stock: {{ selectedProduct.productStock }}
+                </span>
+              </div>
+            </div>
+          </td>
+
+          <td class="mx-5 px-5">
+            {{ selectedProduct.productDescription }}
+          </td>
+
+          <td class="mx-5 px-5">
+            {{ selectedProduct.productUnitPrice | currency }}
+          </td>
+
+          <td class="mx-5 px-5">
+            <div *ngIf="selectedProduct.productStock > 0">
+              <button (click)="onClickAddToCart(selectedProduct.productCode, selectedProduct.productName)" class="btn custom-button btn-sm">
+                <i class="fas fa-cart-plus"></i>
+                Add to Cart
+              </button>
+            </div>
+
+            <div *ngIf="!selectedProduct.productStock > 0">
+              <button disabled class="btn custom-button btn-sm">
+                <i class="fas fa-cart-plus"></i>
+                Out of Stock
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

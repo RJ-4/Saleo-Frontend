@@ -1,0 +1,26 @@
+<h1 class="py-4 text-white text-center background-color-purple">Saleo</h1>
+<div class="container ml-auto mr-auto w-50 text-center">
+  <h3 class="py-4 color-purple">Login</h3>
+  
+  <form (ngSubmit)="onLogin()" #form="ngForm">
+    <span class="text-danger d-block py-2" *ngIf="!isLoginSuccessful">Invalid Employee Id or Password</span>
+    <div class="form-group">
+      <span class="help-block text-danger d-block py-2" *ngIf="!id.valid && id.touched">Please enter a valid Id</span>
+      <input type="text" ngModel name="id" id="id" class="form-control form-control-lg my-4" placeholder="Employee Id" #id="ngModel" required>
+    </div>
+    
+    <div class="form-group">
+      <span class="help-block py-2 text-danger" *ngIf="!password.valid && password.touched">Please enter a valid password</span>
+      <input type="password" ngModel name="password" id="password" placeholder="Password" class="form-control form-control-lg my-4" #password="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <span class="help-block py-2 text-danger" *ngIf="!cashDrawer.valid && cashDrawer.touched">Please enter a valid value</span>
+      <span class="help-block text-danger py-2" *ngIf="isCashDrawerAmountNeagtive">Please enter a positive amount</span>
+      <input type="number" min="0" ngModel name="cashDrawer" id="cashDrawer" class="form-control form-control-lg my-4" placeholder="Starting balance of cash drawer" #cashDrawer required>
+    </div>
+    <button type="submit" class="btn btn-lg background-color-purple my-4 text-white"
+    [disabled]="!form.valid">Login</button>
+  </form>
+  <a [routerLink]='["/sign-up"]' class="color-purple">Not registered? Sign up</a>
+</div>

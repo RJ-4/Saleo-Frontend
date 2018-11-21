@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-light background-color-purple">
+  <div class="container">
+    <a href="/employees/{{ employeeId }}/home" class="navbar-brand text-white font-weight-bold custom-font">Saleo</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" style="background: white">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item mr-2 font-weight-light">
+          <a routerLink="/employees/{{ employeeId }}/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link text-white">Home</a>
+        </li>
+
+        <li class="nav-item mr-2 font-weight-light dropdown">
+          <a href="" routerLinkActive="active" class="nav-link text-white dropdown-toggle" data-toggle="dropdown">
+            <i class="fas fa-shopping-basket"></i>
+            Orders
+          </a>
+          <div class="dropdown-menu bg-purple">
+            <a routerLink="/employees/{{ employeeId }}/customers/search" class="dropdown-item text-white" routerLinkActive="active">
+                <i class="fas fa-cart-plus mr-2"></i>
+                New Order
+            </a>
+            <a routerLink="/employees/{{ employeeId }}/orders" class="dropdown-item text-white">
+              <i class="fas fa-shopping-basket mr-2" routerLinkActive="active"></i>
+              Show Orders
+            </a>
+          </div>
+        </li>
+        
+        <li class="nav-item mr-2 font-weight-light dropdown">
+          <a href="" routerLinkActive="active" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">
+            <i class="fas fa-user"></i>
+            Customers
+          </a>
+          <div class="dropdown-menu bg-purple">
+            <a routerLink="/employees/{{ employeeId }}/customers/new" class="text-white dropdown-item" routerLinkActive="active">
+              <i class="fas fa-user-plus mr-2"></i>
+              Add Customer
+            </a>
+            <a routerLink="/employees/{{ employeeId }}/customers/search" class="text-white dropdown-item" routerLinkActive="active">
+              <i class="fas fa-user-edit mr-2"></i>
+              Update Customer
+            </a>
+            <a routerLink="/employees/{{ employeeId }}/customers/search" class="text-white dropdown-item" routerLinkActive="active">
+              <i class="fas fa-user-clock mr-2"></i>
+              Search Customer
+            </a>
+          </div>
+        </li>
+        
+        <li class="nav-item font-weight-light mr-2 dropdown">
+          <a href="" routerLinkActive="active" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">
+            <i class="fas fa-hdd"></i>
+            Products
+          </a>
+          <div class="dropdown-menu bg-purple">
+            <a routerLink="/employees/{{employeeId}}/products/new" class="dropdown-item text-white" routerLinkActive="active">
+              <i class="fas fa-download mr-2"></i>
+              Add Product
+            </a>
+            <a routerLink="/employees/{{ employeeId }}/products/search" class="dropdown-item text-white" routerLinkActive="active">
+              <i class="fas fa-upload mr-2"></i>
+              Update Product
+            </a>
+            <a routerLink="/employees/{{ employeeId }}/products/search" class="dropdown-item text-white" routerLinkActive="active">
+              <i class="fas fa-search-dollar mr-2"></i>
+              Search Product
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item mr-2 font-weight-light">
+          <a routerLink="/employees/{{ employeeId }}/profile/update" routerLinkActive="active" class="nav-link text-white">
+            <i class="fas fa-user-circle"></i>
+            Update Profile
+          </a>
+        </li>
+        <li class="nav-item mr-2 font-weight-light">
+          <a routerLink="/logout" routerLinkActive="active" class="nav-link text-white">
+            <i class="fas fa-sign-out-alt"></i>
+            logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

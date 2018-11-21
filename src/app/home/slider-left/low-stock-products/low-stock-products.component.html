@@ -1,0 +1,24 @@
+<h2 class="custom-font background-color-purple text-white text-center py-2">
+  Low Stock Products
+</h2>
+<div class="container py-3">
+  <div *ngFor="let product of lowStockProducts">
+    <div class="d-flex">
+      <div class="align-self-start pl-4 pr-2">
+        <i class="fas fa-box-open fa-4x"></i>
+      </div>
+      <div class="align-self-start px-2">
+        <a routerLink="/employees/{{ employeeId }}/products/{{ product.productCode }}/update" class="color-purple font-weight-bold custom-font">
+          {{ product.productName }}
+        </a>
+        <span class="d-block small color-purple font-weight-light custom-font">
+          Price: {{ product.productUnitPrice|currency }}
+        </span>
+        <span class="d-block small color-purple font-weight-light custom-font">
+          Stock: {{ product.productStock }}
+        </span>
+      </div>
+    </div>
+    <hr class="background-color-purple">
+  </div>
+</div>

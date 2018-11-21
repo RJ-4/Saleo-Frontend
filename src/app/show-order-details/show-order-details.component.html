@@ -1,0 +1,138 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="alert alert-danger" role="alert" *ngIf="isOrderIdInvalid">
+  <p class="pt-5 mt-5 text-danger font-weight-bold custom-font text-center" *ngIf="isOrderIdLoaded | async">
+      This order does not exist!!!
+  </p>
+</div>
+<div *ngIf="!isOrderIdInvalid" class="pb-5">
+  
+  <h4 class="py-5 mt-5 font-weight-bold custom-font color-purple text-center" style="background: rgb(241, 240, 243)" *ngIf="isOrderIdLoaded | async">
+      Order #{{ orderId }}
+  </h4>
+
+  <div class="container text-center" *ngIf="isSelectedOrderLoaded | async">
+    <h3 class="py-2 custom-font font-weight-bold text-blue">
+      US {{ selectedOrder.productCost | currency }}
+    </h3>
+    <span class="d-block small text-blue mb-1">
+      <strong>
+        Created at:  
+      </strong>
+       {{ selectedOrder.orderDate | date }},  {{ selectedOrder.orderTime }}
+    </span>
+    <span class="d-block small text-blue mb-1">
+      <strong>Status:  </strong> 
+      {{ selectedOrder.orderStatus }}
+    </span>
+    <span class="d-block small text-blue mb-1">
+      <strong>Total Due:  </strong> 
+      <span *ngIf="selectedOrder.orderStatus === 'Completed'">
+        $ 0.0
+      </span>
+      <span *ngIf="selectedOrder.orderStatus === 'Saved for Later'">
+        {{ selectedOrder.productCost | currency }}
+      </span>
+    </span>
+  </div>
+  <hr class="background-color-purple ">
+
+  <div class="container bg-light pb-5" *ngIf="isSelectedOrderLoaded | async">
+    <div class="custom-font text-dark">
+      <h6 class="font-weight-bold px-2 py-1" style="background: silver" >Mode of Payment </h6>
+      <span class="ml-4 my-2" *ngIf="selectedOrder.modeOfPayment">
+        {{ selectedOrder.modeOfPayment }}
+      </span>
+      <span class="ml-4 mb-2" *ngIf="!selectedOrder.modeOfPayment">
+        N/A
+      </span>
+      <span class="d-block ml-4 my-2">
+        Order was placed using USD
+      </span>
+
+      <div class="row mt-4" style="background: silver">
+        <div class="col-md-7">
+          <h6 class="d-inline font-weight-bold px-2 py-1">Product</h6>
+        </div>
+        <div class="col-md-2" style="border-left: 1px solid grey">
+          <span class="font-weight-bold small px-2">Product Code</span>
+        </div>
+        <div class="col-md-1" style="border-left: 1px solid grey">
+          <span class="font-weight-bold small px-2">Quantity</span>
+        </div>
+        <div class="col-md-2" style="border-left: 1px solid grey">
+          <span class="font-weight-bold small px-2">Subtotal</span>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-7">
+          <h6 class="d-inline font-weight-bold px-2 py-1">
+            {{ selectedOrder.product.productName }}
+          </h6>
+        </div>
+        <div class="col-md-2">
+          <span class="font-weight-bold small px-2">
+            {{ selectedOrder.product.productCode }}
+          </span>
+        </div>
+        <div class="col-md-1">
+          <span class="font-weight-bold small px-2">
+            {{ selectedOrder.productQuantity }}
+          </span>
+        </div>
+        <div class="col-md-2">
+          <span class="font-weight-bold small px-2">
+            USD {{ selectedOrder.productCost | currency }}
+          </span>
+        </div>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+          <span class="small my-2 float-right">
+            <strong>Subtotal: </strong> USD {{ selectedOrder.productCost | currency }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+          <span class="small my-2 float-right">
+            <strong>Tax: </strong> USD $10.00
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+          <span class="small my-2 float-right">
+            <strong>Grand Total: </strong> USD {{ (selectedOrder.productCost + 10) | currency }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+          <span class="small my-2 float-right">
+            <strong>Total Paid: </strong>
+              <span *ngIf="selectedOrder.orderStatus === 'Completed'">
+                USD {{ (selectedOrder.productCost + 10) | currency }}
+              </span>
+              <span *ngIf="selectedOrder.orderStatus === 'Saved for Later'">
+                USD $0.00
+              </span>
+          </span>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <hr class="background-color-purple">
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,47 @@
+<app-navigation-bar></app-navigation-bar>
+<h1 class="font-weight-bold custom-font color-purple text-center my-5 pt-5">
+  Update Profile
+</h1>
+<div class="container w-50 ml-auto mr-auto text-center pb-4" *ngIf="isLoggedInEmployeeLoaded | async">
+
+  <div class="alert alert-success" role="alert" *ngIf="isEmployeeUpdated && (isUpdationLoaded | async)" [hidden]="isPasswordsDontMatch">
+    <p class="text-success custom-font font-weight-bold">
+      Profile successfully updated!!!
+    </p>
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="isInvalidEmployeeId === true" [hidden]="isEmployeeUpdated">
+    <p class="text-danger custom-font font-weight-bold">
+      Invalid employee id!!!
+    </p>
+  </div>
+
+  <form (ngSubmit)="onUpdate()" #form="ngForm">
+ 
+    <div class="form-group">
+      <input type="text" [(ngModel)]="loggedInEmployee.employeeId" name="employeeId" id="employeeId" class="form-control form-control-lg my-4" placeholder="Employee Id" readonly required>
+    </div>
+  
+    <div class="form-group">
+      <input type="text" [(ngModel)]="loggedInEmployee.employeeName" name="employeeName" id="employeeName" class="form-control form-control-lg my-4" placeholder="Employee Name" required>
+    </div>
+
+    <div [hidden]="isEmployeeUpdated" class="alert alert-danger" role="alert" *ngIf="isPasswordsDontMatch">
+      <p class="text-danger my-2 custom-font font-weight-bold">
+        Passwords don't match!!!
+      </p>
+    </div>
+
+    <div class="form-group">
+      <input type="password" [(ngModel)]="loggedInEmployee.employeePassword" name="employeePassword" id="employeePassword" class="form-control form-control-lg my-4" placeholder="Employee Password" required>
+    </div>
+  
+    <div class="form-group">
+      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" id="confirmPassword" class="form-control form-control-lg my-4" placeholder="Confirm Password" required>
+    </div>
+  
+    <button type="submit" [disabled]="!form.valid" class="btn background-color-purple text-white btn-lg my-4">Update</button>
+
+  </form>
+</div>
+<app-footer></app-footer>

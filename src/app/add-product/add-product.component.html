@@ -1,0 +1,34 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="container ml-auto mr-auto w-50 text-center py-5">
+  <h1 class="color-purple pt-5 pb-4 custom-font font-weight-bold">
+    Add New Product
+  </h1>
+  <div class="alert alert-success py-2" role="alert" *ngIf="isNewProductAdded">
+    <p class="font-weight-bold text-success custom-font">{{ newProductName }} successfully added!!!</p>
+  </div>
+  
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+  
+    <div class="form-group">
+      <input type="text" ngModel name="productName" id="productName" class="form-control form-control-lg" placeholder="Product Name" #productName="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <textarea ngModel name="productDescription" id="productDescription" class="my-4 form-control form-control-lg" placeholder="Product Description" rows="6" #productDescription="ngModel" required>
+      </textarea>
+    </div>
+    
+    <div class="form-group">
+      <span class="text-danger help-block my-2 d-block" *ngIf="isProductUnitPriceInvalid === true">Please enter a positive value</span>
+      <input type="number" min="1" ngModel name="productUnitPrice" id="productUnitPrice" class="my-4 form-control form-control-lg" placeholder="Product Unit Price" #productUnitPrice="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <span class="help-block text-danger my-2 d-block" *ngIf="isProductStockInvalid === true">Please enter a positive value</span>
+      <input type="number" min="0" ngModel name="productStock" id="productStock" class="my-4 form-control form-control-lg" placeholder="Product Stock" #productStock="ngModel" required>
+    </div>
+
+    <button type="submit" [disabled]="!form.valid" class="btn btn-lg background-color-purple text-white">Submit</button>
+  </form>
+</div>
+<app-footer></app-footer>

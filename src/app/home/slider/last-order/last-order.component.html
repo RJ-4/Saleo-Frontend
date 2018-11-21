@@ -1,0 +1,55 @@
+<h2 class="custom-font background-color-purple text-white text-center py-2">Last Order</h2>
+<div *ngIf="isLastOrderLoaded|async">
+    <div class="container pt-3 pb-5 bg-light">
+        <ul>
+            <li class="color-purple custom-font font-weight-bold">
+                Product Name: 
+                <span class="font-weight-normal">
+                    {{ lastOrder.product.productName }}
+                </span>
+            </li>    
+            <li class="color-purple custom-font font-weight-bold">
+                Product Description: 
+                <span class="font-weight-light">
+                    {{ lastOrder.product.productDescription }}
+                </span>
+            </li>
+            <li class="color-purple custom-font font-weight-bold">
+                Quantity:  
+                <span class="font-weight-light">
+                    {{ lastOrder.productQuantity }}
+                </span>
+            </li>
+            <li class="color-purple custom-font font-weight-bold">
+                Total Cost: 
+                <span class="font-weight-light">
+                    {{ lastOrder.productCost }}
+                </span>
+            </li>
+            <li class="color-purple custom-font font-weight-bold">
+                Customer Name: 
+                <span class="font-weight-light">
+                    {{ lastOrder.customer.customerName }}
+                </span>
+            </li>
+            <li class="color-purple custom-font font-weight-bold">
+                Status: 
+                <span class="font-weight-light">
+                    {{ lastOrder.orderStatus }}
+                </span>
+            </li>
+            <li class="color-purple custom-font font-weight-bold">
+                Cusotmer Mobile No: 
+                <span class="font-weight-light">
+                    {{ lastOrder.customer.customerMobileNo }}
+                </span>
+            </li>
+            <li class="color-purple custom-font font-weight-bold">
+                Order Placed On: 
+                <span class="font-weight-light">
+                    {{ lastOrder.orderDate|date }}
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>    

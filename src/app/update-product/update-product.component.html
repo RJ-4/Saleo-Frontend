@@ -1,0 +1,36 @@
+<app-navigation-bar></app-navigation-bar>
+<h1 class="py-5 mt-5 font-weight-bold custom-font text-center color-purple">
+  Update Product
+</h1>
+<div class="container text-center ml-auto mr-auto w-50 pb-5">
+
+  <div class="alert alert-danger" role="alert" *ngIf="!isValidProduct">
+    <p class="text-danger font-weight-bold custom-font">Invalid product!!!</p>
+  </div>
+
+  <div *ngIf="isSelectedProductLoaded | async">
+    <form (ngSubmit)="onUpdate()" #form="ngForm">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="selectedProduct.productName" name="productName" id="productName" class="form-control form-control-lg" placeholder="Product Name" #productName="ngModel" required>
+      </div>
+    
+      <div class="form-group">
+        <textarea [(ngModel)]="selectedProduct.productDescription" name="productDescription" id="productDescription" class="my-4 form-control form-control-lg" placeholder="Product Description" rows="6" #productDescription="ngModel" required>
+        </textarea>
+      </div>
+      
+      <div class="form-group">
+        <span class="text-danger help-block my-2 d-block" *ngIf="isProductUnitPriceInvalid === true">Please enter a positive value</span>
+        <input type="number" min="1" [(ngModel)]="selectedProduct.productUnitPrice" name="productUnitPrice" id="productUnitPrice" class="my-4 form-control form-control-lg" placeholder="Product Unit Price" #productUnitPrice="ngModel" [value]="selectedProduct.productUnitPrice" required>
+      </div>
+  
+      <div class="form-group">
+        <span class="help-block text-danger my-2 d-block" *ngIf="isProductStockInvalid === true">Please enter a positive value</span>
+        <input type="number" min="0" [(ngModel)]="selectedProduct.productStock" name="productStock" id="productStock" class="my-4 form-control form-control-lg" placeholder="Product Stock" #productStock="ngModel"  [value]="selectedProduct.productStock" required>
+      </div>
+
+      <button type="submit" [disabled]="!form.valid" class="btn btn-lg background-color-purple text-white">Update</button>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

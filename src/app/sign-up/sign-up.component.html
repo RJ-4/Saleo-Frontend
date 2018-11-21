@@ -1,0 +1,22 @@
+<h1 class="py-4 text-white text-center background-color-purple">Saleo</h1>
+<div class="container ml-auto mr-auto w-50 text-center">
+  <h3 class="py-4 color-purple">Sign Up</h3>
+  <form (ngSubmit)="onSignUp()" #form="ngForm">
+    <div class="form-group">
+      <span class="help-block text-danger d-block py-2" *ngIf="!employeeName.valid && employeeName.touched">Please enter a valid Name</span>
+      <input type="text" ngModel name="employeeName" id="employeeName" class="form-control form-control-lg my-4" placeholder="Employee Name" #employeeName="ngModel" required>
+    </div>
+    <span class="d-block text-danger" *ngIf="!arePasswordsMatching">Passwords don't match</span>
+    <div class="form-group">
+      <span class="help-block d-block py-2 text-danger" *ngIf="!password.valid && password.touched">Please enter a valid password</span>
+      <input type="password" ngModel name="password" id="password" placeholder="Password" class="form-control form-control-lg my-4" #password="ngModel" required>
+    </div>
+    <div class="form-group">
+      <span class="help-block py-2 text-danger" *ngIf="!confirmPassword.valid && confirmPassword.touched">Please enter a valid password</span>
+      <input type="password" ngModel name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" class="form-control form-control-lg my-4" #confirmPassword="ngModel" required>
+    </div>
+    <button type="submit" class="btn btn-lg background-color-purple  my-4 text-white"
+    [disabled]="!form.valid">Sign Up</button>
+  </form>
+  <a [routerLink]='["/login"]' class="color-purple py-5">Already registered? Login</a>
+</div>

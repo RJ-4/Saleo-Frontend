@@ -1,0 +1,42 @@
+<app-navigation-bar></app-navigation-bar>
+<h1 class="pt-5 pb-4 mt-5 font-weight-bold custom-font color-purple text-center">
+  Update Customer
+</h1>
+
+<div *ngIf="isInvalidCustomerId">
+  <div class="alert alert-danger text-center" role="alert">
+    <p class="text-danger custom-font font-weight-bold">Customer does not exist!!!</p>
+  </div>
+</div>
+
+<div class="container ml-auto mr-auto w-50 text-center pb-5" *ngIf="isSelectedCustomerLoaded | async">
+
+  <div *ngIf="isUpdationSuccessful">
+    <div class="alert alert-success" role="alert">
+      <p class="text-success custom-font font-weight-bold">{{ selectedCustomer.customerName }} successfully updated!!!</p>
+    </div>
+  </div>
+
+  <form (ngSubmit)="onUpdate()" #form="ngForm">
+    
+    <div class="form-group">
+      <input type="text" [(ngModel)]="selectedCustomer.customerId" name="customerId" id="customerId" class="form-control form-control-lg my-5" placeholder="Customer Id" readonly required>
+    </div>
+
+    <div class="form-group">
+      <input type="text" pattern="[A-Za-z ]{1,}" [(ngModel)]="selectedCustomer.customerName" name="customerName" id="customerName" class="form-control form-control-lg my-5" placeholder="Customer name" required>
+    </div>
+
+    <div class="form-group">
+      <input type="text" pattern="[789][0-9]{9}" [(ngModel)]="selectedCustomer.customerMobileNo" name="customerMobileNo" id="customerMobileNo" class="form-control form-control-lg my-5" placeholder="Customer mobile number" required>
+    </div>  
+
+   <div class="form-group">
+        <input type="email" [(ngModel)]="selectedCustomer.customerEmailId" name="customerEmailId" id="customerEmailId" class="form-control form-control-lg my-5" placeholder="Customer email id" email required>
+   </div>  
+
+   <button type="submit" [disabled]="!form.valid" class="btn btn-lg background-color-purple text-white">Update</button>
+  
+  </form>
+</div>
+<app-footer></app-footer>

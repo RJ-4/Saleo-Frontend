@@ -1,0 +1,69 @@
+<app-navigation-bar></app-navigation-bar>
+<h1 class="pt-5 pb-4 mt-5 font-weight-bold custom-font color-purple text-center">
+    Search Customer
+</h1>
+<div class="container text-center pb-4">
+  <div class="form-group mb-4">
+    <div class="input-group">
+      <input type="text" name="search" id="search" class="form-control" placeholder="Enter customer id, customer name, customer email id or customer mobile no." #searchBox>
+      <div class="input-group-append">
+          <button type="submit" (click)="onSearch(searchBox)" class="bg-light color-purple" style="border-radius: 5px">
+              <i class="fas fa-search"></i>
+            <span class="pl-2">Search</span>
+          </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isNoCustomerFound === true">
+    <div class="alert alert-danger" role="alert">
+      <p class="text-danger font-weight-bold">No customer found for this search parameter!!!</p>
+    </div>
+  </div>
+  <div *ngIf="isNoCustomerFound === false && areCustomersLoaded | async">
+    <div class="row">
+      <div *ngFor="let customer of customers; let i = index" class="p-4">
+        <div class="col md-4">
+          <div *ngIf="i % 2 === 0">
+            <div class="d-flex">
+              <div class="align-self-start pl-4 pr-2">
+                  <i class="fas fa-user fa-7x"></i>
+              </div>
+              <div class="align-self-start px-2">
+                <a routerLink="/employees/{{ employeeId }}/customers/{{ customer.customerId }}" class="color-purple font-weight-bold custom-font">
+                  <h3>{{ customer.customerName }}</h3>
+                </a>
+                <h6 class="color-purple font-weight-light custom-font">
+                  Email Id: {{ customer.customerEmailId }}
+                </h6>
+                <h6 class="color-purple font-weight-light custom-font">
+                  Mobile No.: {{ customer.customerMobileNo }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col md-4">
+          <div *ngIf="i % 2 !== 0">
+            <div class="d-flex">
+              <div class="align-self-start pl-4 pr-2">
+                <i class="fas fa-user fa-7x"></i>
+              </div>
+              <div class="align-self-start px-2">
+                <a routerLink="/employees/{{ employeeId }}/customers/{{ customer.customerId }}" class="color-purple font-weight-bold custom-font">
+                  <h3>{{ customer.customerName }}</h3>
+                </a>
+                <h6 class="color-purple font-weight-light custom-font">
+                  Email Id: {{ customer.customerEmailId }}
+                </h6>
+                <h6 class="color-purple font-weight-light custom-font">
+                  Mobile No.: {{ customer.customerMobileNo }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
