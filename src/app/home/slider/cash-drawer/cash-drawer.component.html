@@ -1,9 +1,9 @@
 <h2 class="custom-font background-color-purple text-white text-center py-2">
   Cash Drawer
 </h2>
-<div class="container text-center pb-5">
+<div class="container text-center pb-5" *ngIf="isLoggedInEmployeeLoaded | async">
   <h3 class="color-purple py-4 font-weight-light">
-    Current Balance: ${{ loggedInEmployee.employeeCashDrawer }}
+    Current Balance: {{ loggedInEmployee.employeeCashDrawer | currency }}
   </h3>
 </div>
 

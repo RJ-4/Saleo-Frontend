@@ -1,0 +1,35 @@
+<app-navigation-bar></app-navigation-bar>
+
+<div class="d-flex font-weight-bold custom-font mt-5 py-4" style="background: rgb(241, 240, 240); border-bottom: 1px solid silver" *ngIf="isSelectedCustomerLoaded | async">
+  
+  <div class="align-self-start pl-4 pr-2">
+      <i class="fas fa-user fa-5x"></i>
+  </div>
+  
+  <div class="align-self-start px-2">
+  
+    <h6 class="text-blue font-weight-bold custom-font">
+      {{ selectedCustomer.customerName }}
+    </h6>
+  
+    <span class="d-block text-blue small font-weight-light custom-font">
+      Email Id: {{ selectedCustomer.customerEmailId }}
+    </span>
+  
+    <span class="d-block text-blue small font-weight-light custom-font">
+      Mobile No: {{ selectedCustomer.customerMobileNo }}
+    </span>
+  
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <app-review-items></app-review-items>
+  </div>
+
+  <div class="col-md-4">
+    <app-payment></app-payment>    
+  </div>
+</div>
+<app-footer></app-footer>

@@ -53,6 +53,11 @@ import { EmptyCartService } from './services/empty-cart.service';
 import { DeleteProductFromCartService } from './services/delete-product-from-cart.service';
 import { UpdateCustomerService } from './services/update-customer.service';
 import { AuthGuradService } from './services/auth-gurad.service';
+import { ProceedToCheckoutService } from './services/proceed-to-checkout.service';
+import { CheckoutComponent } from './selected-customer/checkout/checkout.component';
+import { ReviewItemsComponent } from './selected-customer/checkout/review-items/review-items.component';
+import { PaymentComponent } from './selected-customer/checkout/payment/payment.component';
+import { PaymentService } from './services/payment.service';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -70,7 +75,8 @@ const appRoutes: Routes = [
   {path: 'employees/:employeeId/customers/:customerId', canActivate: [AuthGuradService], component: SelectedCustomerComponent},
   {path: 'employees/:employeeId/customers/:customerId/edit', canActivate: [AuthGuradService], component: EditCustomerComponent},
   {path: 'employees/:employeeId/customers/:customerId/cart', canActivate: [AuthGuradService], component: CartComponent},
-  {path: 'employees/:employeeId/profile/update', canActivate: [AuthGuradService], component: UpdateProfileComponent}
+  {path: 'employees/:employeeId/profile/update', canActivate: [AuthGuradService], component: UpdateProfileComponent},
+  {path: 'employees/:employeeId/customers/:customerId/checkout', canActivate: [AuthGuradService], component: CheckoutComponent}
 ]
 @NgModule({
   declarations: [
@@ -100,7 +106,10 @@ const appRoutes: Routes = [
     SelectProductsComponent,
     CartComponent,
     EditCustomerComponent,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    CheckoutComponent,
+    ReviewItemsComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +117,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoginService, AuthService, SignUpService, EmployeesLastOrderService, LowStockProductsService, TotalOrdersPlacedTodayService, AddProductService, GetAllProductsService, SearchProductService, UpdateProductService, AddCustomerService, SearchCustomerService, ShowOrdersService, ShowOrderDetailsService, GetSelectedCustomerService, AddToCartService, GetProductsInCartService, GetLoggedInEmployeeService, EmptyCartService, DeleteProductFromCartService, UpdateCustomerService],
+  providers: [LoginService, AuthService, SignUpService, EmployeesLastOrderService, LowStockProductsService, TotalOrdersPlacedTodayService, AddProductService, GetAllProductsService, SearchProductService, UpdateProductService, AddCustomerService, SearchCustomerService, ShowOrdersService, ShowOrderDetailsService, GetSelectedCustomerService, AddToCartService, GetProductsInCartService, GetLoggedInEmployeeService, EmptyCartService, DeleteProductFromCartService, UpdateCustomerService, ProceedToCheckoutService, PaymentService],
   
   bootstrap: [AppComponent]
 })

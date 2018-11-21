@@ -77,7 +77,7 @@
           </a>
         </li>
         <li class="nav-item mr-2 font-weight-light">
-          <a routerLink="/logout" routerLinkActive="active" class="nav-link text-white">
+          <a href="#" routerLinkActive="active" class="nav-link text-white" data-toggle="modal" data-target="#confirmLogoutModal">
             <i class="fas fa-sign-out-alt"></i>
             logout
           </a>
@@ -86,3 +86,28 @@
     </div>
   </div>
 </nav>
+
+<div class="modal" id="confirmLogoutModal" *ngIf="isLoggedInEmployeeLoaded | async">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-success text-center custom-font font-weight-bold">
+          Your Cash Drawer
+        </h3>
+        <button class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="m-4 text-dark font-weight-bold modal-body">
+        Currently available cash: 
+        <h4 class="d-inline ml-4 text-center text-success custom-font font-weight-bold">{{ currentCashDrawer | currency }}</h4>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onClickLogoutButton()" class="btn btn-secondary" data-dismiss="modal">Logout</button>
+        <button class="btn btn-success" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

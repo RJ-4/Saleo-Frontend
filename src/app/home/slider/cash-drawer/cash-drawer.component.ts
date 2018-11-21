@@ -16,9 +16,15 @@ export class CashDrawerComponent implements OnInit {
     'token'?: string
   };
 
+  isLoggedInEmployeeLoaded: Promise<boolean>;
+
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    this.loggedInEmployee = this.loginService.getLoggedInEmployee();
+    this.loginService.getCurrentEmployee()
+                     .subscribe((response) => {
+                       this.loggedInEmployee = response.json();
+                       this.isLoggedInEmployeeLoaded = Promise.resolve(true);
+                     });
   }
 }

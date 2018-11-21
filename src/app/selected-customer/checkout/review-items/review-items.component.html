@@ -1,0 +1,89 @@
+<div class="pr-3" style="border-right: 1px solid black" *ngIf="areProductsInCartLoaded | async">
+  
+  <h3 class="pt-2 pb-4 bg-light font-weight-bold text-center custom-font color-purple py-3">
+    Review Items
+  </h3>
+
+  <div class="row text-center" style="background: silver">
+    <div class="col-md-5" style="border: 1px solid black">
+      <h6 class="d-inline custom-font font-weight-bold px-2 py-1">Product</h6>
+    </div>
+    <div class="col-md-2" style="border: 1px solid black">
+      <span class="custom-font font-weight-bold px-2">Unit Price</span>
+    </div>
+    <div class="col-md-2" style="border: 1px solid black">
+      <span class="custom-font font-weight-bold px-2">Quantity</span>
+    </div>
+    <div class="col-md-3" style="border: 1px solid black">
+      <span class="custom-font font-weight-bold px-2">Subtotal</span>
+    </div>
+  </div>
+
+  <div class="row mt-4 pb-4" *ngFor="let productInCart of productsInCart">
+    <div class="col-md-5">
+      <div class="d-flex">
+        <div class="align-self-start pl-4 pr-2">
+          <i class="fas fa-box-open fa-4x"></i>
+        </div>
+        <div class="align-self-start px-2">
+          <span class="color-purple font-weight-bold custom-font">
+            {{ productInCart.product.productName }}
+          </span>
+          <span class="d-block small color-purple font-weight-light custom-font">
+            Code: {{ productInCart.product.productCode }}
+          </span>
+          <span class="d-block small color-purple font-weight-light custom-font">
+            Stock: {{ productInCart.product.productStock }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 text-center">
+      <span class="custom-font px-2">
+        {{ productInCart.product.productUnitPrice }}
+      </span>
+    </div>
+    <div class="col-md-2 text-center">
+      <span class="custom-font px-2">
+        {{ productInCart.productQuantity }}
+      </span>
+    </div>
+    <div class="col-md-3 text-center">
+      <span class="custom-font px-2">
+        USD {{ productInCart.productCost | currency }}
+      </span>
+    </div>
+  </div>
+
+  <div class="clearfix container custom-font pb-5">
+    
+    <hr class="bg-dark">
+    
+    <span class="pl-5 color-purple font-weight-bold mb-2">Subtotal:</span>
+    <span class="float-right color-purple font-weight-bold mr-5 pr-5 mb-1">
+      {{ subtotal | currency }}
+    </span>
+
+    <hr class="bg-dark">
+  
+    <div class="color-purple font-weight-bold">
+      <span class="pl-5 mb-2">Tax:</span>
+      <span class="float-right color-purple font-weight-bold mr-5 pr-5 mb-1">
+        {{ totalTax | currency }}
+      </span> 
+    </div>
+  
+    <hr class="bg-dark">
+  
+    <div class="color-purple font-weight-bold">
+      <span class="pl-5 mb-2">Grand Total:</span>
+      <span class="float-right color-purple font-weight-bold mr-5 pr-5 mb-1">
+        {{ grandTotal | currency }}
+      </span>
+    </div>
+  
+    <hr class="bg-dark">
+  </div>
+
+</div>
+<hr>
