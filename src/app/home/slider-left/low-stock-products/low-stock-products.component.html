@@ -2,7 +2,7 @@
   Low Stock Products
 </h2>
 <div class="container py-3">
-  <div *ngFor="let product of lowStockProducts">
+  <div *ngFor="let product of lowStockProducts | paginate: { itemsPerPage: 3, currentPage: currentPageNo }">
     <div class="d-flex">
       <div class="align-self-start pl-4 pr-2">
         <i class="fas fa-box-open fa-4x"></i>
@@ -21,4 +21,5 @@
     </div>
     <hr class="background-color-purple">
   </div>
+  <pagination-controls class="text-center custom-font" (pageChange)="currentPageNo = $event"></pagination-controls>
 </div>

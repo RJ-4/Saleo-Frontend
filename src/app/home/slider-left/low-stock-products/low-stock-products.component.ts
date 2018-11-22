@@ -15,6 +15,7 @@ export class LowStockProductsComponent implements OnInit {
   lowStockProducts;
   employeeId: number;
   areLowStockProductsLoaded: Promise<boolean>;
+  currentPageNo = 1;
 
   ngOnInit() {
     this.employeeId = +window.localStorage.getItem(this.loginService.getLoggedInEmployeeIdKey());
