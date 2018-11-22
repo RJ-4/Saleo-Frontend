@@ -5,7 +5,7 @@
 <div class="container pb-4">
   <div class="form-group mb-4">
     <div class="input-group">
-      <input type="text" name="search" id="search" class="form-control" placeholder="Enter product code, product name or product description" #searchBox>
+      <input type="text" name="search" id="search" class="form-control" placeholder="Enter product code, product name or product description" [(ngModel)]="filter" #searchBox>
       <div class="input-group-append">
           <button type="submit" (click)="onSearch(searchBox)" class="bg-light color-purple" style="border-radius: 5px">
              <i class="fas fa-search"></i>
@@ -21,7 +21,7 @@
   </div>
   <div *ngIf="isNoProductFound === false && areProductsLoaded | async">
     <div class="row">
-      <div *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage: currentPageNo }; let i = index" class="p-4">
+      <div *ngFor="let product of products | filter: filter | paginate: { itemsPerPage: 10, currentPage: currentPageNo }; let i = index" class="p-4">
         <div class="col md-4">
           <div *ngIf="i % 2 === 0">
             <div class="d-flex">

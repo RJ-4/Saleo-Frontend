@@ -5,7 +5,7 @@
 
   <div class="form-group mb-4 w-50 ml-auto mr-auto mt-4">
     <div class="input-group">
-      <input type="text" name="search" id="search" class="form-control" placeholder="Enter product code, product name or product description" #searchBox>
+      <input type="text" name="search" id="search" class="form-control" placeholder="Enter product code, product name or product description" [(ngModel)]="filter" #searchBox>
       <div class="input-group-append">
           <button type="submit" (click)="onSearch(searchBox)" class="bg-light color-purple" style="border-radius: 5px">
               <i class="fas fa-search"></i>
@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let selectedProduct of selectedProducts | paginate: { itemsPerPage: 5, currentPage: currentPageNo }">
+        <tr *ngFor="let selectedProduct of selectedProducts | filter:filter | paginate: { itemsPerPage: 5, currentPage: currentPageNo }">
           <td class="mx-5 px-5">
             <div class="d-flex">
               <div class="align-self-start pl-4 pr-2">
