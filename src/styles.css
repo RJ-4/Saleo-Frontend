@@ -10,3 +10,10 @@
 .custom-font {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
+
+.custom-pagination /deep/ .ngx-pagination .current {
+    background: rgb(81, 0, 128);
+    color: white;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
