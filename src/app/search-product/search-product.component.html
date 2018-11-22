@@ -2,7 +2,7 @@
 <h1 class="font-weight-bold custom-font color-purple text-center my-5 pt-5">
   Search Products
 </h1>
-<div class="container text-center pb-4">
+<div class="container pb-4">
   <div class="form-group mb-4">
     <div class="input-group">
       <input type="text" name="search" id="search" class="form-control" placeholder="Enter product code, product name or product description" #searchBox>
@@ -21,7 +21,7 @@
   </div>
   <div *ngIf="isNoProductFound === false && areProductsLoaded | async">
     <div class="row">
-      <div *ngFor="let product of products; let i = index" class="p-4">
+      <div *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage: currentPageNo }; let i = index" class="p-4">
         <div class="col md-4">
           <div *ngIf="i % 2 === 0">
             <div class="d-flex">
@@ -64,6 +64,7 @@
         </div>
       </div>
     </div>
+    <pagination-controls class="text-center custom-font" (pageChange)="currentPageNo = $event"></pagination-controls>
   </div>
 </div>
 <app-footer></app-footer>

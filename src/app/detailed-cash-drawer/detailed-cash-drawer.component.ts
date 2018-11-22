@@ -21,6 +21,7 @@ areOrdersLoaded: Promise<boolean>;
 startingCashDrawerBalance: number;
 closingCashDrawer: number;
 isCashDrawerLoaded: Promise<boolean>;
+currentPageNo = 1;
 
 ngOnInit() {
 this.employeeId = +window.localStorage.getItem(this.loginService.getLoggedInEmployeeIdKey());

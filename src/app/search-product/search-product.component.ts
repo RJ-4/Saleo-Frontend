@@ -14,6 +14,7 @@ export class SearchProductComponent implements OnInit {
   areProductsLoaded: Promise<boolean>;
   isNoProductFound = false;
   employeeId: number;
+  currentPageNo = 1;
   
   constructor(private searchProductService: SearchProductService, 
               private loginService: LoginService) { }

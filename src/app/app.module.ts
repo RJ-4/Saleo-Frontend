@@ -61,6 +61,7 @@ import { PaymentService } from './services/payment.service';
 import { DeleteSavedForLaterOrderService } from './services/delete-saved-for-later-order.service';
 import { DetailedCashDrawerComponent } from './detailed-cash-drawer/detailed-cash-drawer.component';
 import { GetCashOrdersService } from './services/get-cash-orders.service'
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -120,6 +121,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    NgxPaginationModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [LoginService, AuthService, SignUpService, EmployeesLastOrderService, LowStockProductsService, TotalOrdersPlacedTodayService, AddProductService, GetAllProductsService, SearchProductService, UpdateProductService, AddCustomerService, SearchCustomerService, ShowOrdersService, ShowOrderDetailsService, GetSelectedCustomerService, AddToCartService, GetProductsInCartService, GetLoggedInEmployeeService, EmptyCartService, DeleteProductFromCartService, UpdateCustomerService, ProceedToCheckoutService, PaymentService, DeleteSavedForLaterOrderService, GetCashOrdersService],

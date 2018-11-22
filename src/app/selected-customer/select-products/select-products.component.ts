@@ -21,6 +21,7 @@ export class SelectProductsComponent implements OnInit {
   customerId: string;
   isCustomerIdLoaded: Promise<boolean>;
   productNameAddedToCart: string;
+  currentPageNo = 1;
   
   constructor(private searchProductService: SearchProductService, 
               private loginService: LoginService,

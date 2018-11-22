@@ -9,7 +9,7 @@
   </div>
 
   <div *ngIf="!areOrdersNotFetched && areOrdersLoaded | async">
-    <div *ngFor="let order of orders; let i = index">
+    <div *ngFor="let order of orders | paginate: { itemsPerPage: 10, currentPage: currentPageNo }; let i = index">
         
       <div class="d-block text-white custom-font mb-4 text-center date-border" *ngIf="i === 0 || orders[i].orderDate !== orders[i - 1].orderDate">
         <span class="float-left ml-5">
@@ -31,10 +31,10 @@
                 <i class="fas fa-box-open fa-3x"></i>
               </div>
               <div class="align-self-start px-2">
-                <a routerLink="/employees/{{ employeeId }}/orders/{{ order.orderId }}" class="color-purple font-weight-bold custom-font">
+                <a routerLink="/employees/{{ employeeId }}/orders/{{ order.orderId }}" class="float-left color-purple font-weight-bold custom-font">
                   {{ order.product.productName }}
                 </a>
-                <span class="d-block small color-purple font-weight-light custom-font">
+                <span class="float-left d-block small color-purple font-weight-light custom-font">
                   Product Code: {{ order.product.productCode }}
                 </span>
               </div>
@@ -47,10 +47,10 @@
                   <i class="fas fa-user fa-3x"></i>
               </div>
               <div class="align-self-start px-2">
-                <a routerLink="/employees/{{ employeeId }}/orders/{{ order.orderId }}" class="color-purple font-weight-bold custom-font">
+                <a routerLink="/employees/{{ employeeId }}/orders/{{ order.orderId }}" class="float-left color-purple font-weight-bold custom-font">
                   {{ order.customer.customerName }}
                 </a>
-                <span class="d-block small color-purple font-weight-light custom-font">
+                <span class="float-left d-block small color-purple font-weight-light custom-font">
                   Customer Id: {{ order.customer.customerId }}
                 </span>
               </div>
@@ -77,6 +77,7 @@
 
         </div>
     </div>
+    <pagination-controls class="color-purple text-center" (pageChange)="currentPageNo = $event"></pagination-controls>
   </div>
 </div>
 <app-footer></app-footer>

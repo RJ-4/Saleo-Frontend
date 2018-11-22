@@ -21,7 +21,7 @@
   </div>
   <div *ngIf="isNoCustomerFound === false && areCustomersLoaded | async">
     <div class="row">
-      <div *ngFor="let customer of customers; let i = index" class="p-4">
+      <div *ngFor="let customer of customers | paginate: { itemsPerPage: 10, currentPage: currentPageNo }; let i = index" class="p-4">
         <div class="col md-4">
           <div *ngIf="i % 2 === 0">
             <div class="d-flex">
@@ -64,6 +64,7 @@
         </div>
       </div>
     </div>
+    <pagination-controls class="text-center custom-font" (pageChange)="currentPageNo = $event"></pagination-controls>
   </div>
 </div>
 <app-footer></app-footer>

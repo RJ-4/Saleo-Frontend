@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let selectedProduct of selectedProducts">
+        <tr *ngFor="let selectedProduct of selectedProducts | paginate: { itemsPerPage: 5, currentPage: currentPageNo }">
           <td class="mx-5 px-5">
             <div class="d-flex">
               <div class="align-self-start pl-4 pr-2">
@@ -88,6 +88,7 @@
           </td>
         </tr>
       </tbody>
+      <pagination-controls class="text-center custom-font" (pageChange) = "currentPageNo = $event"></pagination-controls>
     </table>
   </div>
 </div>

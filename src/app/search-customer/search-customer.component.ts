@@ -13,6 +13,7 @@ export class SearchCustomerComponent implements OnInit {
   areCustomersLoaded: Promise<boolean>;
   customers: any[];
   employeeId: number;
+  currentPageNo = 1;
 
   constructor(private searchCustomerService: SearchCustomerService,
               private loginService: LoginService) { }

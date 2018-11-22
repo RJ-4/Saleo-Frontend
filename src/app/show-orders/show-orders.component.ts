@@ -19,6 +19,7 @@ export class ShowOrdersComponent implements OnInit {
   orders: any[];
   areOrdersNotFetched = false;
   areOrdersLoaded: Promise<boolean>;
+  currentPageNo = 1;
 
   ngOnInit() {
     this.employeeId = +window.localStorage.getItem(this.loginService.getLoggedInEmployeeIdKey());
